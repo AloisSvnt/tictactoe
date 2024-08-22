@@ -16,7 +16,7 @@ function Square({ id, item, onClick }: SquareProps) {
   const roundedClassName = corner ? corner[id] : "";
   return (
     <button
-      className={`cursor-pointer text-6xl flex items-center justify-center border-solid border-2 border-black ${roundedClassName}`}
+      className={`cursor-pointer flex items-center justify-center border-solid border-2 border-black ${roundedClassName}`}
       onClick={() => onClick(id)}
     >
       {item}

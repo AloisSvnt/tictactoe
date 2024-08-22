@@ -51,9 +51,9 @@ function Board() {
             key={index}
             item={
               item === "X" ? (
-                <i className="fa-solid fa-xmark"></i>
+                <i className="fa-solid fa-xmark text-6xl"></i>
               ) : item === "O" ? (
-                <i className="fa-regular fa-circle"></i>
+                <i className="fa-regular fa-circle text-5xl"></i>
               ) : null
             }
             onClick={() => handleClick(index)}
