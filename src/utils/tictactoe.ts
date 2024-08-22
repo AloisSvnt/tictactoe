@@ -26,8 +26,8 @@ export function enjoyWin(element: HTMLElement) {
     size: party.variation.range(1, 2),
     color: party.variation.gradientSample(
       party.Gradient.simple(
-        party.Color.fromHex("#E54D24"),
-        party.Color.fromHex("#DDB249")
+        party.Color.fromHex("#2E282A"),
+        party.Color.fromHex("#EF9995")
       )
     )
   });
