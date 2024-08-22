@@ -1,10 +1,16 @@
 import { useState } from "react";
-import { calculateWinner } from "../utils/tictactoe";
+import { calculateWinner, calculateDrawMatch, enjoyWin } from "../utils/tictactoe";
 
 export function useTicTacToe() {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [isXNext, setIsXNext] = useState(true);
-  const [winner, setWinner] = useState<string | null>(null);
+  const [winner, setWinner] = useState<Object | null>(null);
+
+  const resetBoard = () => {
+    setSquares(Array(9).fill(null));
+    setIsXNext(true);
+    setWinner(null);
+  }
 
   const handleClick = (index: number) => {
     const newSquares = squares.slice();
@@ -17,12 +23,16 @@ export function useTicTacToe() {
     setIsXNext(!isXNext);
 
     const gameWinner = calculateWinner(newSquares);
-    if (gameWinner) {
-      setWinner(gameWinner);
-    }else {
+    if(!gameWinner){
       setIsXNext(!isXNext);
     }
-  };
+    if (gameWinner) {
+      setWinner(gameWinner);
+    }
+    if (calculateDrawMatch(newSquares)) {
+      setWinner("Draw");
+    };
 
-  return { squares, handleClick, isXNext, winner };
+  }
+  return { squares, handleClick, isXNext, winner, resetBoard, enjoyWin };
 }

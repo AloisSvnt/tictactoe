@@ -1,3 +1,5 @@
+import party from "party-js";
+
 export function calculateWinner(squares: string[]) {
   const lines = [
     [0, 1, 2],
@@ -12,8 +14,29 @@ export function calculateWinner(squares: string[]) {
   for (const line of lines) {
     const [a, b, c] = line;
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+      return {winner:squares[a], line: [a, b, c]};
     }
   }
   return null;
+}
+
+export function enjoyWin(element: HTMLElement) {
+  party.confetti(element, {
+    count: party.variation.range(50, 100),
+    size: party.variation.range(1, 2),
+    color: party.variation.gradientSample(
+      party.Gradient.simple(
+        party.Color.fromHex("#E54D24"),
+        party.Color.fromHex("#DDB249")
+      )
+    )
+  });
+}
+
+
+export function calculateDrawMatch(squares: string[]): boolean {
+  if (calculateWinner(squares)) {
+    return false;
+  }
+  return squares.every((square) => square !== null);
 }
